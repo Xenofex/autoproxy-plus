@@ -1,0 +1,28 @@
+{
+    "name": "autoproxyplus",
+    "title": "autoproxyplus",
+    "id": "jid1-HGLCUldCJtjCWw",
+    "description": "a basic add-on",
+    "author": "",
+    "license": "MPL 2.0",
+    "version": "0.1",
+
+    "preferences": [{
+        "name": "proxyMode",
+        "title": "Proxy Mode",
+        "description": "How Autoproxy Plus works",
+        "type": "radio",
+        "value": "auto",
+        "options": [{
+            "value": "no_proxy",
+            "label": "No Proxy"
+        }, {
+            "value": "all_proxy",
+            "label": "All through Proxy"
+        }, {
+            "value": "auto",
+            "label": "Automatic by a set of rules"
+        }]
+
+    }]
+}
