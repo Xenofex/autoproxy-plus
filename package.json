@@ -13,15 +13,16 @@
             "description": "How Autoproxy Plus works",
             "type": "radio",
             "value": "auto",
+            "hidden": true,
             "options": [{
                 "value": "off",
-                "label": "No Proxy"
+                "label": "AutoProxy Plus disabled"
             }, {
                 "value": "global",
                 "label": "All through Proxy"
             }, {
                 "value": "auto",
-                "label": "Automatic by a set of rules"
+                "label": "Automatic by a set of rules, fallback to the Firefox configured proxy"
             }]
 
         }, {
