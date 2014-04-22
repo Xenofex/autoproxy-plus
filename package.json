@@ -14,10 +14,10 @@
         "type": "radio",
         "value": "auto",
         "options": [{
-            "value": "no_proxy",
+            "value": "off",
             "label": "No Proxy"
         }, {
-            "value": "all_proxy",
+            "value": "global",
             "label": "All through Proxy"
         }, {
             "value": "auto",
