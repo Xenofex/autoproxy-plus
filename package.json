@@ -1,28 +1,34 @@
 {
-    "name": "autoproxyplus",
-    "title": "autoproxyplus",
+    "name": "autoproxy_plus",
+    "title": "AutoProxy Plus",
     "id": "jid1-HGLCUldCJtjCWw",
-    "description": "a basic add-on",
+    "description": "AutoProxy modernized, faster and easier to use.",
     "author": "",
     "license": "MPL 2.0",
     "version": "0.1",
 
     "preferences": [{
-        "name": "proxyMode",
-        "title": "Proxy Mode",
-        "description": "How Autoproxy Plus works",
-        "type": "radio",
-        "value": "auto",
-        "options": [{
-            "value": "off",
-            "label": "No Proxy"
-        }, {
-            "value": "global",
-            "label": "All through Proxy"
-        }, {
+            "name": "proxyMode",
+            "title": "Proxy Mode",
+            "description": "How Autoproxy Plus works",
+            "type": "radio",
             "value": "auto",
-            "label": "Automatic by a set of rules"
-        }]
+            "options": [{
+                "value": "off",
+                "label": "No Proxy"
+            }, {
+                "value": "global",
+                "label": "All through Proxy"
+            }, {
+                "value": "auto",
+                "label": "Automatic by a set of rules"
+            }]
 
-    }]
+        }, {
+            "name": "subscriptionURL",
+            "title": "Subscription URL",
+            "description": "URL of gfwlist.txt",
+            "type": "string",
+            "value": "http://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt"
+        }]
 }
