@@ -3,26 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>AutoProxy Plus</title>
+    <link rel="stylesheet" href="css/semantic.min.css">
+    <script src="jquery-2.1.0.min.js"></script>
+    <script src="javascript/semantic.min.js"></script>
+    <script src="dropdown_content.js"></script>
     <style>
         body {
             font-family: Verdana, sans-serif;
-            font-size: 12px;
+            font-size: 9px;
+            background: #FAFAFA;
+            color: #222222;
+        }
+
+        .ui.page.grid {
+            min-width: initial;
         }
     </style>
 </head>
 <body>
-    <h3>AutoProxy Plus</h1>
+    <div class="ui one column page grid">
+        <div class="column">
+            <h3 class="ui header dividing">AutoProxy Plus</h3>
+            
+            <h5 class="ui header">Mode</h5>
+            <div id="mode-select" class="ui three item menu inverted small">
+                <a id="proxy-off" class="active item">Off</a>
+                <a id="proxy-global" class="item">Global</a>
+                <a id="proxy-auto" class="item">Auto</a>
+            </div>
+            <div class="ui divider"></div>
+            <div id="actions">
+                <a class="ui fluid purple button small">Analyse this page</a>
+            </div>
 
-    <fieldset>
-        <legend>Mode</legend>
-        <input type="radio" name="mode" id="mode_off" value="off">
-        <label for="mode_off">Off</label>
+        </div>
+    </div>
 
-        <input type="radio" name="mode" id="mode_global" value="global">
-        <label for="mode_global">Everything</label>
-        
-        <input type="radio" name="mode" id="mode_auto" value="auto">
-        <label for="mode_auto">Automatic</label>
-    </fieldset>
 </body>
 </html>
