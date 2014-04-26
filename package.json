@@ -10,19 +10,19 @@
     "preferences": [{
             "name": "proxyMode",
             "title": "Proxy Mode",
-            "description": "How Autoproxy Plus works",
+            "description": "How Autoproxy Plus works. \n'Off': use your Firefox proxy settings.\n'Glboal': use AutoProxy Plus configured proxy.\n'Auto': automatically switich between the 2",
             "type": "radio",
             "value": "auto",
-            "hidden": true,
+            "hidden": false,
             "options": [{
                 "value": "off",
-                "label": "AutoProxy Plus disabled"
+                "label": "Off"
             }, {
                 "value": "global",
-                "label": "All through Proxy"
+                "label": "Global"
             }, {
                 "value": "auto",
-                "label": "Automatic by a set of rules, fallback to the Firefox configured proxy"
+                "label": "Auto"
             }]
 
         }, {
