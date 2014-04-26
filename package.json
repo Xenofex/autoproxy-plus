@@ -31,5 +31,10 @@
             "description": "URL of gfwlist.txt",
             "type": "string",
             "value": "http://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt"
+        }, {
+            "name": "reloadSubscription",
+            "title": "Reload Subscription",
+            "label": "Reload Now",
+            "type": "control"
         }]
 }

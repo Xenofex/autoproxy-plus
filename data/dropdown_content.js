@@ -12,7 +12,7 @@ $(function() {
     });
 
     if (typeof addon === 'undefined') {
-        addon = { options: { prefs: { proxyMode: 'auto'}}};
+        addon = { options: { prefs: { proxyMode: 'auto'}}, port: $.noop, emit: $.noop };
     }
 
     $items.filter("#proxy-" + addon.options.prefs.proxyMode).click();
