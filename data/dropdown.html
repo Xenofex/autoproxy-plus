@@ -18,6 +18,16 @@
         .ui.page.grid {
             min-width: initial;
         }
+
+        .ui.form .two.fields > .field {
+            width: 50% !important;
+            position: relative;
+        }
+
+        .ui.dimmed.dimmable:not(body) {
+            overflow: initial;
+        }
+
     </style>
 </head>
 <body>
@@ -27,14 +37,63 @@
             
             <h5 class="ui header">Mode</h5>
             <div id="mode-select" class="ui three item menu inverted small">
-                <a id="proxy-off" class="active item">Off</a>
-                <a id="proxy-global" class="item">Global</a>
                 <a id="proxy-auto" class="item">Auto</a>
+                <a id="proxy-global" class="item">Global</a>
+                <a id="proxy-off" class="active item">Off</a>
             </div>
             <div class="ui divider"></div>
-            <div id="actions">
-                <a class="ui fluid purple button small">Analyse this page</a>
+            <div id="actions" class="ui two item menu purple inverted small">
+                <a id="new-rule-button" class="ui item">New Proxy Rule</a>
+                <a class="ui item">Settings</a>
             </div>
+
+            <form action="javascript:" id="new-rule" class="ui form segment transition hidden dimmable">
+                <div class="field">
+                    Mode: 
+                    <div id="mode" class="ui inline dropdown">
+                        <div class="default text">Proxy</div>
+                        <i class="icon dropdown"></i>
+                        <div class="menu">
+                            <div class="item">Proxy</div>
+                            <div class="item">Whitelist</div>
+                        </div>
+                    </div>,
+
+
+                    Match:
+                    <div id="match" class="ui inline dropdown">
+                        <div class="default text">Domain</div>
+                        <i class="icon dropdown"></i>
+                        <div class="menu">
+                            <div class="item">Domain</div>
+                            <div class="item">Prefix</div>
+                            <div class="item">Expression</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="field">
+                    <div class="ui action input">
+                        <input id="rule-expression" type="text">
+                        <div id="add-rule" class="ui green button">Add</div>
+                    </div>
+                </div>
+
+                <div class="ui dimmer hidden">
+                    <div class="content">
+                        <div class="center">
+                            <div id="rule-added" class="ui mini green button">
+                                <i class="checkmark icon"></i>
+                                Done!
+                            </div>
+                            <div id="undo-adding-rule" class="ui mini button">
+                                Undo
+                                <i class="ban circle icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
 
         </div>
     </div>
