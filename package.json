@@ -10,7 +10,7 @@
     "preferences": [{
             "name": "proxyMode",
             "title": "Proxy Mode",
-            "description": "How Autoproxy Plus works. \n'Off': use your Firefox proxy settings.\n'Glboal': use AutoProxy Plus configured proxy.\n'Auto': automatically switich between the 2",
+            "description": "How Autoproxy Plus works. \n'Off': use your Firefox proxy settings.\n'Glboal': use AutoProxy Plus configured proxy.\n'Auto': automatically switch between the 2",
             "type": "radio",
             "value": "auto",
             "hidden": false,
