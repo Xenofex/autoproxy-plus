@@ -34,9 +34,13 @@ $(function() {
   $('.ui.dropdown').dropdown();
 
   $('#new-rule-button').click(function() {
-    $('#new-rule').transition('slide down');
+    $('#new-rule').transition('slide down', '250ms');
     $(this).toggleClass('active');
     $('#rule-expression').val('');
+  });
+
+  $('#settings').click(function() {
+    addon.port.emit('openSettings');
   });
 
   $('#add-rule').click(function() {

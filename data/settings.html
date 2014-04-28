@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AutoProxy Plus Settings</title>
+
+    <link rel="stylesheet" href="css/semantic.min.css">
+    <link rel="stylesheet" href="css/autoproxy.css">
+
+    <script src="jquery-2.1.0.min.js"></script>
+    <script src="javascript/semantic.min.js"></script>
+    <script src="settings_content.js"></script>
+    <style>
+        .rule {
+            margin-bottom: 0;
+            margin-top: 0;
+            padding-top: 1px;
+            padding-bottom: 1px;
+            font-family: 'Courier New';
+            font-size: 12px;
+        }
+
+        .rule:hover:not(.comment) {
+            border-bottom: 1px solid #DDD;
+            padding-bottom: 0px;
+        }
+
+        .comment.rule {
+            color: grey;
+            font-style: italic;
+            background: #EFEFEF;
+            padding-left: 0.5em;
+        }
+
+        .ui.input.short {
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ui page grid">
+        <div class="ui column">
+            <h1 class="ui header dividing">Settings</h1>
+    
+            <div id="proxy-config" >
+                <h3 class="ui header">Proxy</h3>
+                 <div id="proxy-type" class="ui inline dropdown">
+                    <div class="default text">http</div>
+                    <i class="icon dropdown"></i>
+                    <div class="menu">
+                        <div class="item">http</div>
+                        <div class="item">socks</div>
+                    </div>
+                </div>
+
+                <div class="ui small input">
+                    <input type="text" id="proxy-host">
+                </div>
+                :
+                <div class="ui small input short">
+                    <input type="text" id="proxy-port">
+                </div>
+            </div>
+            
+            <div class="ui divider"></div>
+            <h3 class="ui header">Subscription</h3>
+            <div id="filters" class="ui vertical segment">
+                Filters: <!-- Type:
+                <div id="match" class="ui inline dropdown">
+                    <div class="default text">All</div>
+                    <i class="icon dropdown"></i>
+                    <div class="menu">
+                        <div class="item">All</div>
+                        <div class="item">Domain</div>
+                        <div class="item">Prefix</div>
+                        <div class="item">Expression</div>
+                    </div>
+                </div>
+ -->
+                Search: 
+                <div class="ui small input">
+                    <input id="search" type="text">
+                </div>
+            </div>
+            <div id="subscription">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

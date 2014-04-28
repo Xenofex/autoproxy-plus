@@ -1,0 +1,10 @@
+html, body {
+    font-family: Verdana, sans-serif;
+    background: #FAFAFA;
+    color: #222222;
+    font-size: 12px;
+}
+
+.ui.page.grid {
+    min-width: initial;
+}

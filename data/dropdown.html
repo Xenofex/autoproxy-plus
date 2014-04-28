@@ -4,24 +4,14 @@
     <meta charset="UTF-8">
     <title>AutoProxy Plus</title>
     <link rel="stylesheet" href="css/semantic.min.css">
+    <link rel="stylesheet" href="css/autoproxy.css">
+
     <script src="jquery-2.1.0.min.js"></script>
     <script src="javascript/semantic.min.js"></script>
     <script src="dropdown_content.js"></script>
     <style>
-        html, body {
-            font-family: Verdana, sans-serif;
-            background: #FAFAFA;
-            color: #222222;
-            font-size: 12px;
-        }
-        
-        .ui.page.grid {
-            min-width: initial;
-        }
-
         .ui.form .two.fields > .field {
             width: 50% !important;
-            position: relative;
         }
 
         .ui.dimmed.dimmable:not(body) {
@@ -44,7 +34,7 @@
             <div class="ui divider"></div>
             <div id="actions" class="ui two item menu purple inverted small">
                 <a id="new-rule-button" class="ui item">New Proxy Rule</a>
-                <a class="ui item">Settings</a>
+                <a id="settings" class="ui item">Settings</a>
             </div>
 
             <form action="javascript:" id="new-rule" class="ui form segment transition hidden dimmable">
