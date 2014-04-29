@@ -1,0 +1,52 @@
+.rule {
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-family: 'Courier New';
+    font-size: 12px;
+}
+
+.rule:hover:not(.comment) {
+    border-bottom: 1px solid #DDD;
+    padding-bottom: 0px;
+}
+
+.comment.rule {
+    color: grey;
+    font-style: italic;
+    background: #EFEFEF;
+    padding-left: 0.5em;
+}
+
+.ui.input.short {
+    width: 50px;
+}
+
+#user-rules {
+    padding: 30px 0;
+}
+.user-rules-table {
+    width: 100%;
+    border-collapse:separate;
+    border-spacing:0;
+    font-family: "Courier New";
+}
+
+.user-rules-table th {
+    color: grey;
+    font-style: italic;
+}
+
+.user-rules-table td, .user-rules-table th {
+    border-bottom: 1px solid #DDD;
+    padding: 2px 0;
+}
+
+.user-rules-table td:first-child {
+    width: 75px;
+}
+
+.user-rules-table td:nth-child(2) {
+    width: 80px;
+}

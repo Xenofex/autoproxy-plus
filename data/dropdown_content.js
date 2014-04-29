@@ -12,23 +12,11 @@ $(function() {
   }
 
   function getRule() {
-    var rule;
-    if ($('#mode.dropdown .text').text().toLowerCase() == "proxy") {
-      rule = "";
-    } else {
-      rule = "@@";
-    }
-
-    var matchText = $('#match.dropdown .text').text().toLowerCase();
-    if (matchText == 'domain') {
-      rule += "||";
-    } else if (matchText == 'prefix') {
-      rule += "|";
-    }
-
-    rule += $('#rule-expression').val();
-    
-    return rule;
+    return {
+      isWhiteList: ($('#mode.dropdown .text').text().toLowerCase() != "proxy"),
+      type: $('#match.dropdown .text').text().toLowerCase(),
+      expression: $('#rule-expression').val()
+    };
   }
 
   $('.ui.dropdown').dropdown();

@@ -65,11 +65,19 @@ $(function() {
         $('#subscription').html(subscriptionHtml);
     }
 
+    function showUserProxyRules(rules) {
+        var source = $('#user-rule-template').html();
+        var template = Handlebars.compile(source);
+        $('#user-rules tbody').html(template({rules: rules}));
+    }
+
     // var subscriptions = addon.options.subscriptions;
 
     if (typeof addon !== 'undefined') {
         window.subscriptions = addon.options.subscriptions;
+        window.userProxyRules = addon.options.userProxyRules;
         showSubscriptions(window.subscriptions);
+        showUserProxyRules(window.userProxyRules);
 
         var proxyConfig = addon.options.proxyConfig;
         if (typeof proxyConfig !== 'undefined' && proxyConfig) {
@@ -89,7 +97,12 @@ $(function() {
         $.ajax({ url: 'gfwlist.txt', dataType: 'text', success: function(subscriptions) {
             window.subscriptions = subscriptions.split("\n");
             showSubscriptions(window.subscriptions);
-        }});        
+        }});      
+
+        window.userProxyRules = [{type: "domain", expression: "example.com"}, {type: "domain", expression: "example.com"}];
+        showUserProxyRules(window.userProxyRules);
     }
+
+
 
 });

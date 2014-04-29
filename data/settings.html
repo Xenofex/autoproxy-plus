@@ -6,38 +6,15 @@
 
     <link rel="stylesheet" href="css/semantic.min.css">
     <link rel="stylesheet" href="css/autoproxy.css">
+    <link rel="stylesheet" href="css/settings.css">
 
     <script src="jquery-2.1.0.min.js"></script>
     <script src="javascript/semantic.min.js"></script>
+    <script src="javascript/handlebars-v1.3.0.js"></script>
     <script src="settings_content.js"></script>
-    <style>
-        .rule {
-            margin-bottom: 0;
-            margin-top: 0;
-            padding-top: 1px;
-            padding-bottom: 1px;
-            font-family: 'Courier New';
-            font-size: 12px;
-        }
-
-        .rule:hover:not(.comment) {
-            border-bottom: 1px solid #DDD;
-            padding-bottom: 0px;
-        }
-
-        .comment.rule {
-            color: grey;
-            font-style: italic;
-            background: #EFEFEF;
-            padding-left: 0.5em;
-        }
-
-        .ui.input.short {
-            width: 50px;
-        }
-    </style>
 </head>
 <body>
+
     <div class="ui page grid">
         <div class="ui column">
             <h1 class="ui header dividing">Settings</h1>
@@ -63,6 +40,32 @@
             </div>
             
             <div class="ui divider"></div>
+
+            <div id="user-rules" >
+                <h3 class="ui header">User Defined Proxy Rules</h3>
+                <table class="user-rules-table">
+                    <thead>
+                        <tr>
+                            <th>Whitelist?</th>
+                            <th>Type</th>
+                            <th>Expression</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+                <script id="user-rule-template" type="text/x-handlebars-template">
+                    {{#each rules}}
+                    <tr>
+                        <td>{{#if isWhitelist}}&tick;{{/if}}</td>
+                        <td>{{type}}</td>
+                        <td>{{expression}}</td>
+                    </tr>
+                    {{/each}}
+                </script>
+    
+            </div>           
+
             <h3 class="ui header">Subscription</h3>
             <div id="filters" class="ui vertical segment">
                 Filters: <!-- Type:
