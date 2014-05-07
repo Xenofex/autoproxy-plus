@@ -23,6 +23,22 @@
     width: 50px;
 }
 
+.ui.popup .ui.button {
+    width: initial;
+}
+
+.ui.form input[type="text"] {
+    font-size: 1rem;
+}
+
+.ui.popup {
+    max-width: initial;
+}
+
+#edit-rule {
+    width: 300px;
+}
+
 #user-rules {
     padding: 30px 0;
 }
@@ -41,12 +57,23 @@
 .user-rules-table td, .user-rules-table th {
     border-bottom: 1px solid #DDD;
     padding: 2px 0;
+    height: 1.2em;
 }
 
 .user-rules-table td:first-child {
     width: 75px;
+    text-align: center;
 }
 
 .user-rules-table td:nth-child(2) {
     width: 80px;
+}
+
+.user-rules-table .actions {
+    display: none;
+}
+
+.user-rules-table tr:hover .actions {
+    display: initial;
+    vertical-align: baseline;
 }

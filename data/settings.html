@@ -49,17 +49,23 @@
                             <th>Whitelist?</th>
                             <th>Type</th>
                             <th>Expression</th>
+                            <th width="50">&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
                 </table>
-
                 <script id="user-rule-template" type="text/x-handlebars-template">
                     {{#each rules}}
-                    <tr>
-                        <td>{{#if isWhitelist}}&tick;{{/if}}</td>
+                    <tr id="{{id}}">
+                        <td>{{#if isWhitelist}}&#10004;{{/if}}</td>
                         <td>{{type}}</td>
                         <td>{{expression}}</td>
+                        <td>
+                            <span class="actions">
+                                <i class="pencil icon link"></i>
+                                <i class="trash icon link"></i>
+                            </span>
+                        </td>
                     </tr>
                     {{/each}}
                 </script>
@@ -88,6 +94,40 @@
             <div id="subscription">
             </div>
         </div>
+    </div>
+
+    <div id="new-rule-template" class="hidden">
+        <form action="javascript:" id="edit-rule" class="ui form">
+            <div class="field">
+                Whitelist?: 
+                <div id="mode" class="ui inline dropdown">
+                    <div class="default text">Proxy</div>
+                    <i class="icon dropdown"></i>
+                    <div class="menu">
+                        <div class="item">Proxy</div>
+                        <div class="item">Whitelist</div>
+                    </div>
+                </div>,
+
+
+                Type:
+                <div id="match" class="ui inline dropdown">
+                    <div class="default text">Domain</div>
+                    <i class="icon dropdown"></i>
+                    <div class="menu">
+                        <div class="item">Domain</div>
+                        <div class="item">Prefix</div>
+                        <div class="item">Expression</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="field">
+                <div class="ui input">
+                    <input id="rule-expression" type="text">
+                </div>
+            </div>
+        </form>
     </div>
 </body>
 </html>

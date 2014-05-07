@@ -33,7 +33,7 @@ $(function() {
         var proxyType = $('#proxy-type .text').text().toLowerCase();
         var proxyHost = $('#proxy-host').val();
         var proxyPort = $('#proxy-port').val();
-        addon.port.emit('proxyChanged', [proxyType, proxyHost, proxyPort].join(':'));
+        addon.port.emit('updateProxy', [proxyType, proxyHost, proxyPort].join(':'));
     }
 
     function showSubscriptions(subscriptions, filter) {
@@ -65,11 +65,113 @@ $(function() {
         $('#subscription').html(subscriptionHtml);
     }
 
+    function capitaliseFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
     function showUserProxyRules(rules) {
+        function findRuleById(id) {
+            for (var i = rules.length - 1; i >= 0; i--) {
+                if (rules[i].id === id) {
+                    return rules[i];
+                }
+            }
+
+            return null;
+        }
+
         var source = $('#user-rule-template').html();
         var template = Handlebars.compile(source);
         $('#user-rules tbody').html(template({rules: rules}));
+
+        $('.actions .trash').click(function() {
+            var $this = $(this);
+
+            if (!$this.data('initialized')) {
+                $this.popup({
+                    on: 'click',
+                    html: 'Sure to delete? <div class="mini negative ui button">Delete</div>'
+                }).popup('show');
+
+                $this.data('initialized', true);
+            }
+
+            setTimeout(function() {
+                var $tr = $this.closest('tr');
+                var id = $tr.prop('id');
+
+                $('.ui.popup .ui.negative.button').click(function () {
+                    $this.popup('hide');
+                    $tr.transition({
+                        // animation: 'slide down',
+                        complete: function() {
+                            $tr.remove();
+                        }
+                    });
+
+                    if (typeof addon !== 'undefined') {
+                        addon.port.emit('removeRule', id);
+                    }
+                });
+            }, 260);
+           
+
+        });
+
+        $('.actions .pencil').click(function() {
+            var $this = $(this);
+            var $template = $('#new-rule-template');
+
+            var id = $this.closest('tr').prop('id');
+            var rule = findRuleById(id);
+
+            var html = $template.html();
+
+            if (!$this.data('initialized')) {
+                $this.popup({
+                    on: 'click',
+                    html: html,
+                    target: $this.closest('tr').find('td:nth-child(2)')
+                }).popup('show');
+
+
+                $this.data('initialized', true);
+            }
+
+             setTimeout(function() {
+                var $form = $('.ui.popup #edit-rule');
+                function updateRuleInEditForm() {
+                    var mode = $form.find('#mode .text').text();
+                    var match = $form.find('#match .text').text();
+                    var expression = $form.find('#rule-expression').val();
+
+                    rule.isWhitelist = mode.toLowerCase() === 'whitelist';
+                    rule.type = match.toLowerCase();
+                    rule.expression = expression;
+
+                    if (typeof addon !== 'undefined') {
+                        addon.port.emit('updateRule', rule);
+                    }
+
+                    var $tr = $this.closest('tr');
+                    $tr.find('td:nth-child(1)').html(rule.isWhiteist ? '&#10004;' : '');
+                    $tr.find('td:nth-child(2)').text(rule.type);
+                    $tr.find('td:nth-child(3)').text(rule.expression);
+                }
+
+                var $form = $('.ui.popup #edit-rule');
+                $form.find('.ui.dropdown').dropdown({
+                    onChange: updateRuleInEditForm
+                });
+                
+                $form.find('#mode .text').text(rule.isWhiteist ? 'Whitelist' : 'Proxy');
+                $form.find('#match .text').text(capitaliseFirstLetter(rule.type));
+                $form.find('#rule-expression').val(rule.expression).on('change blur', updateRuleInEditForm);
+            }, 260);
+
+        });
     }
+
 
     // var subscriptions = addon.options.subscriptions;
 
@@ -99,7 +201,7 @@ $(function() {
             showSubscriptions(window.subscriptions);
         }});      
 
-        window.userProxyRules = [{type: "domain", expression: "example.com"}, {type: "domain", expression: "example.com"}];
+        window.userProxyRules = [{id: '1', type: "domain", expression: "example.com"}, {id: '2', type: "domain", expression: "example.com"}];
         showUserProxyRules(window.userProxyRules);
     }
 

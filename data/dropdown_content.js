@@ -13,7 +13,7 @@ $(function() {
 
   function getRule() {
     return {
-      isWhiteList: ($('#mode.dropdown .text').text().toLowerCase() != "proxy"),
+      isWhitelist: ($('#mode.dropdown .text').text().toLowerCase() != "proxy"),
       type: $('#match.dropdown .text').text().toLowerCase(),
       expression: $('#rule-expression').val()
     };
