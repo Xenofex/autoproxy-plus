@@ -7,6 +7,41 @@ $(function() {
         }
     }
 
+    function capitaliseFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    function alertSuccess(msg, msgTime) {
+        $('#success-box .header').text(msg);
+
+        $('#success-box').removeClass('visible').addClass('hidden').transition({
+            animation: 'fade up', 
+            duration: 250, 
+            complete: function() {
+                setTimeout(function() {
+                    $('#success-box').removeClass('visible').addClass('hidden');
+                }, msgTime || 500);
+            } 
+        });
+    }
+
+
+    $('.tabular.menu .item').click(function() {
+        var $this = $(this);
+        $this.siblings(".active").removeClass('active');
+        $this.addClass('active');
+        $('.ui.tab').removeClass('active')
+        .filter('[data-tab="' + $this.data('tab') + '"]').addClass('active');
+    });
+
+    $('#update-subscription').click(function() {
+        var newURL = $('#subscription-url').val();
+
+        if (typeof addon !== 'undefined') {
+            addon.port.emit('updateSubscriptionURL', newURL);
+        }
+    });
+
     $('#proxy-type.ui.dropdown').dropdown({onChange: function(value, text) {
         proxyChanged();
     }});
@@ -34,6 +69,7 @@ $(function() {
         var proxyHost = $('#proxy-host').val();
         var proxyPort = $('#proxy-port').val();
         addon.port.emit('updateProxy', [proxyType, proxyHost, proxyPort].join(':'));
+        alertSuccess('Saved');
     }
 
     function showSubscriptions(subscriptions, filter) {
@@ -65,9 +101,6 @@ $(function() {
         $('#subscription').html(subscriptionHtml);
     }
 
-    function capitaliseFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
 
     function showUserProxyRules(rules) {
         function findRuleById(id) {
@@ -159,7 +192,6 @@ $(function() {
                     $tr.find('td:nth-child(3)').text(rule.expression);
                 }
 
-                var $form = $('.ui.popup #edit-rule');
                 $form.find('.ui.dropdown').dropdown({
                     onChange: updateRuleInEditForm
                 });
@@ -181,6 +213,8 @@ $(function() {
         showSubscriptions(window.subscriptions);
         showUserProxyRules(window.userProxyRules);
 
+        $('#subscription-url').val(addon.options.subscriptionURL);
+
         var proxyConfig = addon.options.proxyConfig;
         if (typeof proxyConfig !== 'undefined' && proxyConfig) {
             var proxySplited = proxyConfig.split(':');
@@ -194,6 +228,10 @@ $(function() {
         addon.port.on('subscriptionsChanged', function(subscriptions) {
             window.subscriptions = addon.options.subscriptions;
             showSubscriptions(window.subscriptions);
+        });
+
+        addon.port.on('subscriptionUpdatedAt', function(date) {
+            alertSuccess("Subscription updated at: " + date, 1000);
         });
     } else {
         $.ajax({ url: 'gfwlist.txt', dataType: 'text', success: function(subscriptions) {

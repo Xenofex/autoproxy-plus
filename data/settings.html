@@ -17,31 +17,57 @@
 
     <div class="ui page grid">
         <div class="ui column">
-            <h1 class="ui header dividing">Settings</h1>
+            <h1 class="ui header">Settings</h1>
+            <p>
+                <div class="tabular ui menu">
+                    <a class="item active" data-tab="general">General</a>
+                    <a class="item" data-tab="user-rules">User Rules</a>
+                    <a class="item" data-tab="subscription">Subscription</a>
+                </div>
+            </p>
     
-            <div id="proxy-config" >
+            <div id="proxy-config" class="ui tab active" data-tab="general">
                 <h3 class="ui header">Proxy</h3>
-                 <div id="proxy-type" class="ui inline dropdown">
-                    <div class="default text">http</div>
-                    <i class="icon dropdown"></i>
-                    <div class="menu">
-                        <div class="item">http</div>
-                        <div class="item">socks</div>
+                
+                <p>
+                    <div id="proxy-type" class="ui inline dropdown">
+                        <div class="default text">http</div>
+                        <i class="icon dropdown"></i>
+                        <div class="menu">
+                            <div class="item">http</div>
+                            <div class="item">socks</div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="ui small input">
-                    <input type="text" id="proxy-host">
-                </div>
-                :
-                <div class="ui small input short">
-                    <input type="text" id="proxy-port">
+                    <div class="ui small input">
+                        <input type="text" id="proxy-host">
+                    </div>
+                    :
+                    <div class="ui small input short">
+                        <input type="text" id="proxy-port">
+                    </div>
+
+                    <span id="proxy-updated"></span>
+                </p>
+
+                <h3 class="ui header">Subscription</h3>
+
+                    <div class="ui fluid action input">
+                        <input type="text" placeholder="Subscription URL... (gfwlist.txt)" id="subscription-url">
+                        <div class="ui positive button" id="update-subscription">Update Now</div>
+                    </div>
+                <p id="subscription-updated-at">
+                </p>
+
+                <div id="success-box" class="ui success message transition hidden">
+                    <div class="header">
+                        Saved!
+                    </div>
                 </div>
             </div>
             
-            <div class="ui divider"></div>
 
-            <div id="user-rules" >
+            <div id="user-rules" class="ui tab" data-tab="user-rules">
                 <h3 class="ui header">User Defined Proxy Rules</h3>
                 <table class="user-rules-table">
                     <thead>
@@ -69,29 +95,19 @@
                     </tr>
                     {{/each}}
                 </script>
-    
             </div>           
-
-            <h3 class="ui header">Subscription</h3>
-            <div id="filters" class="ui vertical segment">
-                Filters: <!-- Type:
-                <div id="match" class="ui inline dropdown">
-                    <div class="default text">All</div>
-                    <i class="icon dropdown"></i>
-                    <div class="menu">
-                        <div class="item">All</div>
-                        <div class="item">Domain</div>
-                        <div class="item">Prefix</div>
-                        <div class="item">Expression</div>
+            
+            <div class="ui tab" data-tab="subscription">
+                <h3 class="ui header">Subscription</h3>
+                <div id="filters" class="ui vertical segment">
+                    Filters: 
+                    Search: 
+                    <div class="ui small input">
+                        <input id="search" type="text">
                     </div>
                 </div>
- -->
-                Search: 
-                <div class="ui small input">
-                    <input id="search" type="text">
+                <div id="subscription">
                 </div>
-            </div>
-            <div id="subscription">
             </div>
         </div>
     </div>
