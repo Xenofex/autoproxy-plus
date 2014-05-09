@@ -5,7 +5,7 @@
     "description": "AutoProxy modernized, faster and easier to use.",
     "author": "Eli Wang",
     "license": "MPL 2.0",
-    "version": "0.1",
+    "version": "0.1.1",
 
     "icon": "data/icon-auto-32.png",
     "icon64": "data/icon-auto-64.png",

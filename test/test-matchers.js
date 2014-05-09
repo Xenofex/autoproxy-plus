@@ -1,4 +1,4 @@
-let { Matcher, PrefixMatcher, DomainNameMatcher, TextPatterMatcher } = require('./matchers.js');
+let { Matcher, PrefixMatcher, DomainNameMatcher, TextPatterMatcher } = require('./matchers');
 
 exports['test Matcher parsing'] = function(assert) {
     assert.ok(Matcher.parse("alliance.org.hk") instanceof TextPatterMatcher);
