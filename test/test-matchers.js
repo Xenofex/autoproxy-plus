@@ -1,8 +1,8 @@
-let { Matcher, PrefixMatcher, DomainNameMatcher, TextPatterMatcher } = require('./matchers');
+let { Matcher, PrefixMatcher, DomainNameMatcher, TextRegexpMatcher } = require('./matchers');
 
 exports['test Matcher parsing'] = function(assert) {
-    assert.ok(Matcher.parse("alliance.org.hk") instanceof TextPatterMatcher);
-    assert.ok(Matcher.parse(".allinfa.com") instanceof TextPatterMatcher);
+    assert.ok(Matcher.parse("alliance.org.hk") instanceof TextRegexpMatcher);
+    assert.ok(Matcher.parse(".allinfa.com") instanceof TextRegexpMatcher);
     assert.ok(Matcher.parse("|http://allinfa.com") instanceof PrefixMatcher);
     assert.ok(Matcher.parse("||allinfo.com") instanceof DomainNameMatcher);
 
