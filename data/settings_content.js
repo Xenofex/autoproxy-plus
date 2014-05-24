@@ -230,8 +230,10 @@ $(function() {
             showSubscriptions(window.subscriptions);
         });
 
-        addon.port.on('subscriptionUpdatedAt', function(date) {
-            alertSuccess("Subscription updated at: " + date, 1000);
+        addon.port.on('subscriptionUpdatedAt', function(msg) {
+            alertSuccess("Subscription updated at: " + msg.updatedAt, 1000);
+            window.subscriptions = msg.subscriptions;
+            showSubscriptions(window.subscriptions);
         });
     } else {
         $.ajax({ url: 'gfwlist.txt', dataType: 'text', success: function(subscriptions) {
