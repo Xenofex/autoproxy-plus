@@ -13,7 +13,7 @@
 }
 
 .comment.rule {
-    color: grey;
+    color: gray;
     font-style: italic;
     background: #EFEFEF;
     padding-left: 0.5em;
@@ -54,7 +54,7 @@
 }
 
 .user-rules-table th {
-    color: grey;
+    color: gray;
     font-style: italic;
 }
 
