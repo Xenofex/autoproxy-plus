@@ -1,18 +1,32 @@
-let { parsedRules, defaultProxy, applyFilter } = require('./proxy');
+let { subscriptionRules, defaultProxy, applyFilter, reloadSubscription } = require('../lib/proxy');
+let { makeUri } = require('./util');
+let sp = require("sdk/simple-prefs");
 
 exports['test parsedRules'] = function(assert) {
-    assert.strictEqual(typeof parsedRules.whiteList, 'object');
-    assert.strictEqual(typeof parsedRules.proxyList, 'object');
-    console.log('here');
+    assert.strictEqual(typeof subscriptionRules.whiteList, 'object');
+    assert.strictEqual(typeof subscriptionRules.proxyList, 'object');
 };
 
-exports['test applyFilter'] = function(assert) {
-    assert.ok(!applyFilter(null, 'http://site.locql.com', null));
-    assert.ok(applyFilter(null, 'https://twitter.com/d', null));
-    assert.ok(applyFilter(null, 'https://www.facebook.com/some_page', null));
-    assert.ok(applyFilter(null, 'http://www.youtube.com', null));
-};
+function useProxy(url, assert) {
+    let dummyProxy = {};
+    assert.equal(applyFilter(null, makeUri(url), dummyProxy), defaultProxy);
+}
 
-console.log("exports: ", exports['parsedRules']);
+function noProxy(url, assert) {
+    let dummyProxy = {};
+    assert.equal(applyFilter(null, makeUri(url), dummyProxy), dummyProxy);
+}
+
+exports['test applyFilter'] = function(assert, done) {
+    reloadSubscription(true, function () {
+        assert.ok(subscriptionRules.whiteList && subscriptionRules.proxyList,
+                 "should have succesfully parsed subscription rule");
+        noProxy('http://site.locql.com', assert);
+        useProxy('https://twitter.com/d', assert);
+        useProxy('https://www.facebook.com/some_page', assert);
+        useProxy('http://www.youtube.com', assert);
+        done();
+    })
+};
 
 require("sdk/test").run(exports);
