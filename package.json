@@ -1,12 +1,13 @@
 {
     "name": "autoproxy_plus",
     "title": "AutoProxy Plus",
-    "id": "jid1-HGLCUldCJtjCWw",
+    "id": "jid1-HGLCUldCJtjCWw@jetpack",
     "description": "AutoProxy modernized, faster and easier to use.",
     "author": "Eli Wang",
     "license": "MPL 2.0",
     "version": "0.1.4",
 
+    "main": "./lib/main.js",
     "icon": "data/icon-auto-32.png",
     "icon64": "data/icon-auto-64.png",
 

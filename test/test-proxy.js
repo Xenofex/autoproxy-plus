@@ -1,4 +1,4 @@
-let { parsedRules, defaultProxy, applyFilter } = require('./proxy');
+let { parsedRules, defaultProxy, applyFilter } = require('../lib/proxy');
 
 exports['test parsedRules'] = function(assert) {
     assert.strictEqual(typeof parsedRules.whiteList, 'object');
