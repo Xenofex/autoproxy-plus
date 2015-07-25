@@ -16,6 +16,10 @@ exports['test Matcher parsing'] = function(assert) {
     assert.ok(Boolean(regexMatcher.regex));
     assert.ok(regexMatcher.match(makeUri('http://www.example.com/abc')));
     assert.ok(regexMatcher.match(makeUri('https://www.example.com/abc')));
+
+    let regexMatcher2 = Matcher.parse("/^https?://foo\.(.*)/");
+    assert.ok(regexMatcher2.match(makeUri('http://foo.com/')));
+    assert.ok(regexMatcher2.match(makeUri('http://foo.org/')));
 };
 
 require("sdk/test").run(exports);
